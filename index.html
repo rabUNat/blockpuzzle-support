@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブロックパズル全国制覇 サポート</title>
+  <meta name="description" content="ブロックパズル全国制覇のサポートページです。よくある質問、問い合わせ導線、プライバシーポリシーを掲載しています。">
+  <style>
+    :root {
+      --bg: #081223;
+      --bg-elevated: #10203a;
+      --panel: rgba(12, 25, 47, 0.88);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f3f6fb;
+      --muted: #b9c6dd;
+      --accent: #ffd166;
+      --accent-strong: #ffb703;
+      --link: #8ecae6;
+      --ok: #90e0ef;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 209, 102, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(142, 202, 230, 0.16), transparent 30%),
+        linear-gradient(180deg, #0b1730 0%, #081223 48%, #050b16 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--link);
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 72px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(7, 15, 29, 0.62);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand strong {
+      font-size: 15px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links a,
+    .nav-links button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links button:hover,
+    .nav-links button.is-active {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 24px;
+      padding: 48px 0 32px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-main {
+      padding: 36px;
+      position: relative;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -120px auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 209, 102, 0.2), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 209, 102, 0.12);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(34px, 4vw, 54px);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy {
+      margin-top: 18px;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      color: #111827;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .side-block {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+    }
+
+    .side-block strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ok);
+      margin-bottom: 6px;
+    }
+
+    .side-block p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature,
+    .faq-item,
+    .contact-panel {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+    }
+
+    .feature p,
+    .faq-item p,
+    .contact-panel p,
+    .policy p,
+    .policy li {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item h3,
+    .feature h3,
+    .contact-panel h3 {
+      font-size: 18px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+    }
+
+    .contact-panel ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .contact-panel li + li {
+      margin-top: 8px;
+    }
+
+    .policy-toggle {
+      margin-top: 18px;
+    }
+
+    .policy {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid var(--line);
+      display: none;
+    }
+
+    .policy.is-visible {
+      display: block;
+    }
+
+    .policy h3 {
+      margin-top: 24px;
+      font-size: 18px;
+    }
+
+    .policy h3:first-child {
+      margin-top: 0;
+    }
+
+    .policy ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding: 22px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .contact-wrap,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        border-radius: 24px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-main,
+      .hero-side,
+      .section {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav">
+      <div class="brand">
+        <strong>ブロックパズル全国制覇</strong>
+        <span>サポートページ</span>
+      </div>
+      <div class="nav-links">
+        <a href="#support">サポート</a>
+        <a href="#faq">よくある質問</a>
+        <button type="button" id="privacy-nav-button">プライバシーポリシー</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="card hero-main">
+        <div class="eyebrow">BlockPuzzle Support</div>
+        <h1>ブロックパズル全国制覇のサポート窓口です</h1>
+        <p class="hero-copy">
+          アプリの遊び方、よくある質問、問い合わせ先、プライバシーポリシーをまとめています。
+          不具合報告や改善要望がある場合は、このページ下部の案内からご連絡ください。
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#support">サポートを見る</a>
+          <button class="button button-secondary" type="button" id="privacy-hero-button">プライバシーポリシーを見る</button>
+        </div>
+      </div>
+      <aside class="card hero-side">
+        <div class="side-block">
+          <strong>対応内容</strong>
+          <p>起動不具合、進行に関する質問、課金反映、広告導線、データや仕様に関する問い合わせ。</p>
+        </div>
+        <div class="side-block">
+          <strong>対象アプリ</strong>
+          <p>iOS アプリ ブロックパズル全国制覇</p>
+        </div>
+        <div class="side-block">
+          <strong>最終更新</strong>
+          <p>2026年3月14日</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="support" class="card section">
+      <div class="section-header">
+        <div>
+          <h2>サポート</h2>
+          <p>困ったときに確認してほしい内容をまとめています。</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="feature">
+          <h3>遊び方</h3>
+          <p>都道府県ごとのチャレンジを選び、手数制限の中で条件達成を目指す思考型ブロックパズルです。</p>
+        </div>
+        <div class="feature">
+          <h3>コイン要素</h3>
+          <p>チャレンジ達成や広告視聴、アプリ内課金でコインを獲得し、テーマや背景の変更に使えます。</p>
+        </div>
+        <div class="feature">
+          <h3>サポート機能</h3>
+          <p>ミス取り消しや手数追加など、一部の補助機能はコインを消費して利用できます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="card section">
+      <div class="section-header">
+        <div>
+          <h2>よくある質問</h2>
+          <p>App Store 審査時にも説明しやすい内容に絞っています。</p>
+        </div>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>コインが反映されない</h3>
+          <p>通信状態や決済処理の反映に少し時間がかかる場合があります。時間を置いても反映されない場合は、問い合わせ欄の案内からご連絡ください。</p>
+        </div>
+        <div class="faq-item">
+          <h3>広告が読み込まれない</h3>
+          <p>通信環境や広告配信状況により、広告が表示されないことがあります。時間を置いて再度お試しください。</p>
+        </div>
+        <div class="faq-item">
+          <h3>ゲームの進行状況について</h3>
+          <p>プレイ中に地図へ戻ると、そのチャレンジの進行状態はリセットされます。各チャレンジは再挑戦可能です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <div class="section-header">
+        <div>
+          <h2>問い合わせ</h2>
+          <p>連絡導線と、同ページ内で見られるプライバシーポリシーを用意しています。</p>
+        </div>
+      </div>
+      <div class="contact-wrap">
+        <div class="contact-panel">
+          <h3>連絡方法</h3>
+          <p>問い合わせや不具合報告は、GitHub リポジトリの Issues から受け付けます。</p>
+          <ul>
+            <li>不具合の内容</li>
+            <li>発生した画面や操作手順</li>
+            <li>利用している iPhone / iOS バージョン</li>
+            <li>課金や広告に関する問題の場合は、その状況</li>
+          </ul>
+          <p>
+            <a href="https://github.com/rabUNat/blockpuzzle-support/issues" target="_blank" rel="noreferrer">GitHub Issues を開く</a>
+          </p>
+        </div>
+        <div class="contact-panel">
+          <h3>プライバシー</h3>
+          <p>個人情報の取り扱い、広告、課金、外部サービスの利用についてまとめています。</p>
+          <div class="policy-toggle">
+            <button class="button button-secondary" type="button" id="privacy-section-button">プライバシーポリシーを表示</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="privacy-policy" class="policy" aria-live="polite">
+        <h3>プライバシーポリシー</h3>
+        <p>ブロックパズル全国制覇では、サービス提供と品質向上のために、必要な範囲で情報を取り扱います。</p>
+
+        <h3>1. 取得する可能性がある情報</h3>
+        <ul>
+          <li>アプリの利用状況やクラッシュに関する情報</li>
+          <li>広告表示に必要な識別情報や配信関連情報</li>
+          <li>アプリ内課金の購入状況に関する情報</li>
+        </ul>
+
+        <h3>2. 利用目的</h3>
+        <ul>
+          <li>アプリの提供、動作改善、不具合対応</li>
+          <li>広告表示と不正利用防止</li>
+          <li>アプリ内課金の処理と購入内容の反映</li>
+        </ul>
+
+        <h3>3. 外部サービス</h3>
+        <p>本アプリでは、広告配信およびアプリ内課金のために第三者サービスを利用する場合があります。</p>
+        <ul>
+          <li>Google AdMob</li>
+          <li>Apple App Store / StoreKit</li>
+        </ul>
+
+        <h3>4. 個人情報の第三者提供</h3>
+        <p>法令に基づく場合を除き、開発者が個人情報を第三者へ任意に提供することはありません。</p>
+
+        <h3>5. お問い合わせ</h3>
+        <p>本ポリシーに関する問い合わせは、上記の GitHub Issues から受け付けます。</p>
+
+        <h3>6. 改定</h3>
+        <p>必要に応じて本ポリシーを改定することがあります。改定後はこのページに掲載した時点で効力を生じます。</p>
+      </div>
+    </section>
+
+    <footer class="card footer">
+      <span>© 2026 Yuta Usami</span>
+      <span>ブロックパズル全国制覇 Support</span>
+    </footer>
+  </div>
+
+  <script>
+    const policy = document.getElementById("privacy-policy");
+    const policyButtons = [
+      document.getElementById("privacy-nav-button"),
+      document.getElementById("privacy-hero-button"),
+      document.getElementById("privacy-section-button")
+    ];
+
+    function togglePolicy(forceVisible) {
+      const visible = typeof forceVisible === "boolean" ? forceVisible : !policy.classList.contains("is-visible");
+      policy.classList.toggle("is-visible", visible);
+
+      for (const button of policyButtons) {
+        button.classList.toggle("is-active", visible);
+        button.textContent = visible ? "プライバシーポリシーを閉じる" : "プライバシーポリシーを表示";
+      }
+
+      if (visible) {
+        policy.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    for (const button of policyButtons) {
+      button.addEventListener("click", () => togglePolicy());
+    }
+  </script>
+</body>
+</html>
